@@ -1,5 +1,12 @@
+pipeline {
+    agent any
 
-
-
-hhgv
-srg
+    stages {
+        stage('VM node check') {
+            steps {
+                npm -v 
+                node -v
+            }
+        }
+    }
+}
