@@ -11,22 +11,26 @@ pipeline {
             }
         }
 
-        stage('NPM Dependency Audit') {
-            steps {
-                sh '''
-                    npm audit --audit-level=critical
-                    echo $?
-                '''
-            }
-        }
+        stage(' Dependency Scanning') {
+            parallel {   
+                stage('NPM Dependency Audit') {
+                    steps {
+                        sh '''
+                            npm audit --audit-level=critical
+                            echo $?
+                        '''
+                    }
+                }
 
-        stage('OWASP dependency check') {
-            steps {
-                dependencyCheck additionalArguments: '''
-                    --scan \'./\'
-                    --out \'./\'
-                    --format \'YAML\'
-                    --prettyPrint''', odcInstallation: 'OWASP-dependency_check-10'
+                stage('OWASP dependency check') {
+                    steps {
+                        dependencyCheck additionalArguments: '''
+                            --scan \'./\'
+                            --out \'./\'
+                            --format \'YAML\'
+                            --prettyPrint''', odcInstallation: 'OWASP-dependency_check-10'
+                    }
+                }
             }
         }
     }
