@@ -27,7 +27,7 @@ pipeline {
                         dependencyCheck additionalArguments: '''
                             --scan \'./\'
                             --out \'./\'
-                            --format \'YAML\'
+                            --format \'ALL\'
                             --prettyPrint''', odcInstallation: 'OWASP-dependency_check-10'
                     }
                 }
