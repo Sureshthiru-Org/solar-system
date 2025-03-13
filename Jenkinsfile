@@ -28,7 +28,8 @@ pipeline {
                             --scan \'./\'
                             --out \'./\'
                             --format \'ALL\'
-                            --prettyPrint''', odcInstallation: 'OWASP-dependency_check-10'
+                            --prettyPrint
+                            --nvdApiKey $NVD_API_KEY ''', odcInstallation: 'OWASP-dependency_check-10'
                     }
                 }
             }
