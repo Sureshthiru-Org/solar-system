@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Unit testing') {
             steps {
-                sh 'npm test'
+                sh 'npm test' 
             }
         }
     }
